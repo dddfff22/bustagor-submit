@@ -1,11 +1,15 @@
 const { Router } = require('Express')
 const router = Router()
 const terminal = require('../db/models/Terminal');
+const bus = require('../db/models/Bus')
+
 
 router.get('/',function(req,res){
     reser= new Reservation();
-    console.log(reser.enterRouteInfo("부산",1,1));
-    res.send(reser.enterRouteInfo("부산",1,1))
+    reser.enterRouteInfo("대구",1,1);
+   console.log(reser.enterRouteInfo("대구",1,1));
+    res.send('1');
+    
 })
 
 router.post('/enterInfo',function(req,res){
@@ -94,20 +98,20 @@ function Route(Origin, Destination,date){
          this.date=date;
             return getmatchedBus(Origin, Destination,date);
          }
-        }
+     }
 }
 
 
 
 function getmatchedBus(Origin,Destination,date){
-    console.log(Origin);
-    for(var a=0;a<4;a++){
-        if(Origin==list[a].origin){
-            return list[a];
-            
-        }
-    }
-
+    var terminalId
+    terminal.find({TerminalName : Origin}, function(err, ter){
+        if(err) return res.status(500).json({error: err});
+        if(!ter) return res.status(404).json({error: 'terminal not found'});
+        this.terminalId=ter.TerminalId;
+        console.log(ter.TerminalId);
+    })
+    return terminalId
 }
 
 

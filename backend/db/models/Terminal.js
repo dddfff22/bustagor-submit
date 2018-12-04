@@ -10,5 +10,4 @@ const terminalSchema = new mongoose.Schema({
     }
 })
 
-
 module.exports = mongoose.model('Terminal', terminalSchema)
