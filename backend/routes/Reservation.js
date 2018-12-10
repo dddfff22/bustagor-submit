@@ -13,8 +13,8 @@ router.get('/',function(req,res){
 
 router.get('/select',function(req,res){
     var origin=req.query.origin
-    var destinaion=req.query.destinaion
-    res.send(reser.enterRouteInfo(origin,destinaion,11,11));
+    var destination=req.query.destination
+    res.send(reser.enterRouteInfo(origin,destination,11,11));
 })
 
 
@@ -29,56 +29,56 @@ var Terminal=[{ // just example db
     TerminalName:'대구',
     TerminalID:1,
     bus:[
-        {busType:1,price:1000,destinaion:'서울',time:11,busseat:{seatNumber:{selcted:[2,3,4]}}}
+        {busType:1,price:1000,destination:'서울',time:11,busseat:{seatNumber:{selcted:[2,3,4]}}}
     ]
 },{
     TerminalName:'서울',
     TerminalID:2,
     bus:[
-        {busType:1,price:1000,destinaion:'대구',time:11,busseat:{seatNumber:{selcted:[5,2,1]}}}
+        {busType:1,price:1000,destination:'대구',time:11,busseat:{seatNumber:{selcted:[5,2,1]}}}
     ]
 },{
     TerminalName:'부산',
     TerminalID:3,
     bus:[
-        {busType:1,price:1000,destinaion:'서울',time:11,busseat:{seatNumber:{selcted:[1,2,3,5]}}}
+        {busType:1,price:1000,destination:'서울',time:11,busseat:{seatNumber:{selcted:[1,2,3,5]}}}
     ]
 },{
     TerminalName:'대전',
     TerminalID:4,
     bus:[
-        {busType:1,price:1000,destinaion:'서울',time:11,busseat:{seatNumber:{selcted:[9,10]}}}
+        {busType:1,price:1000,destination:'서울',time:11,busseat:{seatNumber:{selcted:[9,10]}}}
     ]
 },{
     TerminalName:'포항',
     TerminalID:5,
     bus:[
-        {busType:1,price:1000,destinaion:'서울',time:11,busseat:{seatNumber:{selcted:[7,8]}}}
+        {busType:1,price:1000,destination:'서울',time:11,busseat:{seatNumber:{selcted:[7,8]}}}
     ]
 },{
     TerminalName:'인천',
     TerminalID:6,
     bus:[
-        {busType:1,price:1000,destinaion:'서울',time:11,busseat:{seatNumber:{selcted:[1,2]}}}
+        {busType:1,price:1000,destination:'서울',time:11,busseat:{seatNumber:{selcted:[1,2]}}}
     ]
 },{
     TerminalName:'광주',
     TerminalID:7,
     bus:[
-        {busType:1,price:1000,destinaion:'서울',time:11,busseat:{seatNumber:{selcted:[4,5]}}}
+        {busType:1,price:1000,destination:'서울',time:11,busseat:{seatNumber:{selcted:[4,5]}}}
     ]
 },{
     TerminalName:'울산',
     TerminalID:8
     ,bus:[
-        {busType:1,price:1000,destinaion:'서울',time:11,busseat:{seatNumber:{selcted:[2,3]}}}
+        {busType:1,price:1000,destination:'서울',time:11,busseat:{seatNumber:{selcted:[2,3]}}}
     ]
 },
 {
     TerminalName:'수원',
     TerminalID:9
     ,bus:[
-        {busType:1,price:1000,destinaion:'서울',time:11,busseat:{seatNumber:{selcted:[2,3]}}}
+        {busType:1,price:1000,destination:'서울',time:11,busseat:{seatNumber:{selcted:[2,3]}}}
     ]
 }
 ]

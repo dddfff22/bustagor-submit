@@ -1,4 +1,3 @@
-
 <template>
   <div id="home">
   <v-app id="inspire">
@@ -83,7 +82,7 @@
     </v-flex>
     <v-spacer></v-spacer>
   </v-layout>
-  <router-link :to="{name:'about',query: {origin:e1, destinaion:e2,date:date,time:time}}"><v-btn color="success">검색</v-btn></router-link>
+  <router-link :to="{name:'about',query: {origin:e1, destination:e2,date:date,time:time}}"><v-btn color="success">검색</v-btn></router-link>
   </v-app>
   </div>
 </template>
