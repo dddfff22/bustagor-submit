@@ -1,44 +1,23 @@
 <template>
     <div >
-      
-                 <a style="cursor: pointer; text-decoration: underline" v-on:click="navigate()">경로 재선택</a>
-              
-
-<table cellspacing='0'> <!-- cellspacing='0' is important, must stay -->
-	<thead color="success">
-		<tr>
-			<th><h1>{{ origin }}</h1></th>
-			<th><h1>-></h1></th>
-			<th><h1>{{destination}}</h1></th>
-			<th><h1>{{date}}</h1></th>
-			<th><h1>{{time}}이후</h1></th>	
-		</tr>
-	</thead><!-- Table Header -->
-	<tbody>
-      
-	</tbody>
-</table>
-
 <table cellspacing='0'> <!-- cellspacing='0' is important, must stay -->
 	<thead>
 		<tr>
 			<th>출발지</th>
 			<th>도착지</th>
 			<th>버스 등급</th>
-			<th>출발 시간</th>
-			<th>가격</th>	
+			<th>출발 시간</th>	
+            <th>결제금액</th>
 		</tr>
 	</thead><!-- Table Header -->
 	<tbody>
-        <tr v-for="post in posts">
-			<td><h1>{{origin}}</h1></td>
-			<td><h1>{{post.destination}}</h1></td>
-			<td><h1>{{post.busType}}</h1></td>
-			<td><h1>{{post.time}}시</h1></td>
-			<td><h1>{{post.price}}</h1></td>
-			<td><h1>{{post.busId}}</h1></td>
-			<td><router-link :to="{name:'bus',query: {origin:origin, busId:post.busId}}"><v-btn color="success">좌석선택</v-btn></router-link></td>
-		</tr>
+
+			<td><h1>{{this.origin}}</h1></td>
+			<td><h1>{{this.destination}}</h1></td>
+            <td><h1>{{this.bustype}}</h1></td>
+            <td><h1>{{this.time}}</h1></td>
+            <td><h1>{{this.sum}}</h1></td>
+			<td><router-link :to="{name:'home'}"><v-btn color="success">결제</v-btn></router-link></td>
 	</tbody>
 </table>
     </div>
@@ -47,45 +26,41 @@
 <script>
     import router from '../router'
     export default {
-        name: 'About',
-        data () {
+        name: 'Payment',
+          data () {
             return {
                 destination:"",
                 origin:"",
                 time:"",
-				date:"",
-				busId:"",
-                check: false,
-				posts: [],
-                 ok: 1,
-                 type: 'A',
-               loginType: 'username'
+                tmp:"",
+                pay:"",
+                price:"",
+                bustype:"",
+                sum:0,
+                check:[true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true],
+                data:0,
+                posts:[],
+                sel:[],
             }
-        },created() {
-                     this.destination = this.$route.query.destination;
-                     this.origin = this.$route.query.origin;
-                     this.time = this.$route.query.time;
-                     this.date = this.$route.query.date;
-                     const baseURI='http://localhost:8000';
-                     this.$http.get(`${baseURI}/reservation/select`+`?origin=`+this.origin+`&destination=`+this.destination).
-                     then((result)=>{
-						 
-					 this.posts=result.data;
-					 console.log(this.posts);
-                      this.ok=0;
-                     console.log(11);
-                });
         },
-        methods: {
-                navigate:function(){
-                    router.go(-1);
-                },change:function(){
-                 
-                        this.ok=0;
-                },calcul:function(seat){
-					console.log(seat);
-					return 1;
-				}
+        created() {        
+                    this.origin = this.$route.query.origin;
+                    this.tmp=this.$route.query.busId;
+                    this.sel=this.$route.query;
+                    this.sum=this.$route.query.sum;
+                    
+                    console.log(this.tmp);
+                     const baseURI='http://localhost:8000';
+                     this.$http.get(`${baseURI}/reservation/session`+`?BusId=`+this.tmp).
+                     then((result)=>{
+                     this.posts=result.data;
+                     this.price=result.data.price;
+                     this.time=result.data.time;
+                     this.bustype=result.data.busType;
+                     this.destination=result.data.destination;
+					 console.log(this.posts);
+                     console.log(this.price);
+                     });
         }
     }
 </script>

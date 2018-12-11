@@ -3,7 +3,7 @@
         
     
 <table class="tg">
-    <table><h1>    선택된 좌석수:{{data}},가격:{{sum}}</h1>    <button>결제하기</button></table>
+    <table><h1>    선택된 좌석수:{{data}},가격:{{sum}}</h1>  <button @click="clickPay">선택완료</button> <router-link :to="{name:'payment',query:{origin:this.origin,sum:this.sum,busId:this.tmp}}"><v-btn color="success">결제하기</v-btn></router-link></table>
   <tr>
     <td class="tg-0pky"><button @click="click(1)"><img v-if="check[1]" src="../assets/seat_off.png"/><img v-else src="../assets/seat_on.png"/></button><span>1</span></td>
     <td class="tg-0pky"><button @click="click(2)"><img v-if="check[2]" src="../assets/seat_off.png"/><img v-else src="../assets/seat_on.png"/></button><span>2</span></td>
@@ -91,6 +91,8 @@
                      this.$http.get(`${baseURI}/reservation/session`+`?BusId=`+this.tmp).
                      then((result)=>{
                      this.posts=result.data;
+                     this.destinaion=result.data.destinaion;
+                     this.time=result.data.time
                      this.price=result.data.price;
 					 console.log(this.posts);
                      console.log(this.price);
@@ -107,6 +109,13 @@
                         this.check[num]=true;
                         this.data-=1;
                         this.sum-=this.price;
+                    }
+                },clickPay(){
+                    for(var i=0;i<27;i++){
+                        if(this.check[i]==false){
+                            this.sel.push(i);
+                             console.log(this.sel);
+                        }
                     }
                 }
         }

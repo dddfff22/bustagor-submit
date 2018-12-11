@@ -2,12 +2,10 @@
   <div id="home">
       <img src="../assets/com.png">
       <router-link :to="{name:'reserve'}"><v-btn color="success">RESERVATION</v-btn></router-link>
-     <router-link :to="{name:'reserve'}"><v-btn color="success">RESERVATION</v-btn></router-link>
-       <router-link :to="{name:'reserve'}"><v-btn color="success">RESERVATION</v-btn></router-link>
+     <router-link :to="{name:'reserve'}"><v-btn color="success">ADDFAVORITE</v-btn></router-link>
+       <router-link :to="{name:'reserve'}"><v-btn color="success">SENDQUESTION</v-btn></router-link>
   </div>
 </template>
-
-
 
 <script>
 export default {
@@ -41,6 +39,17 @@ export default {
         ]
  }
   },
+  created() {        
+                    
+                    
+                    
+                     const baseURI='http://localhost:8000';
+                     this.$http.get(`${baseURI}/reservation/`).
+                     then((result)=>{
+                    console.log(this.result);
+					 
+                     });
+        },
   components: {
 
   },computed:{
