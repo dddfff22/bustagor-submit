@@ -1,26 +1,43 @@
 <template>
-    <div class="About">
-        <h1>{{ origin }}to{{destination}} route {{check}}found</h1>
+    <div >
+      
                  <a style="cursor: pointer; text-decoration: underline" v-on:click="navigate()">경로 재선택</a>
               
-          <router-link :to="{name:'bus'}"><v-btn color="success">예매하기</v-btn></router-link>
 
-        <button v-on:click="change">글 불러오기</button>
-       <h1>{{posts}}</h1>
 <table cellspacing='0'> <!-- cellspacing='0' is important, must stay -->
-	<thead>
+	<thead color="success">
 		<tr>
-			<th>Task Details</th>
-			<th>Progress</th>
-			<th>Vital Task</th>
+			<th><h1>{{ origin }}</h1></th>
+			<th><h1>-></h1></th>
+			<th><h1>{{destination}}</h1></th>
+			<th><h1>{{date}}</h1></th>
+			<th><h1>{{time}}이후</h1></th>	
 		</tr>
 	</thead><!-- Table Header -->
 	<tbody>
-           
-        <tr v-for "post in posts">
-			<td><h1>{{post}}</h1></td>
-            <td><h1>{{post}}</h1></td>	
-            <td><h1>{{post}}</h1></td>
+      
+	</tbody>
+</table>
+
+<table cellspacing='0'> <!-- cellspacing='0' is important, must stay -->
+	<thead>
+		<tr>
+			<th>출발지</th>
+			<th>도착지</th>
+			<th>버스 등급</th>
+			<th>출발 시간</th>
+			<th>가격</th>	
+		</tr>
+	</thead><!-- Table Header -->
+	<tbody>
+        <tr v-for="post in posts">
+			<td><h1>{{origin}}</h1></td>
+			<td><h1>{{post.destination}}</h1></td>
+			<td><h1>{{post.busType}}</h1></td>
+			<td><h1>{{post.time}}시</h1></td>
+			<td><h1>{{post.price}}</h1></td>
+			<td><h1>{{post.busId}}</h1></td>
+			<td><router-link :to="{name:'bus',query: {origin:origin, busId:post.busId}}"><v-btn color="success">좌석선택</v-btn></router-link></td>
 		</tr>
 	</tbody>
 </table>
@@ -36,9 +53,10 @@
                 destination:"",
                 origin:"",
                 time:"",
-                date:"",
+				date:"",
+				busId:"",
                 check: false,
-                posts: [],
+				posts: [],
                  ok: 1,
                  type: 'A',
                loginType: 'username'
@@ -51,9 +69,10 @@
                      const baseURI='http://localhost:8000';
                      this.$http.get(`${baseURI}/reservation/select`+`?origin=`+this.origin+`&destination=`+this.destination).
                      then((result)=>{
-                     this.posts=result.data
-                    
-                      this.ok=0
+						 
+					 this.posts=result.data;
+					 console.log(this.posts);
+                      this.ok=0;
                      console.log(11);
                 });
         },
@@ -63,8 +82,10 @@
                 },change:function(){
                  
                         this.ok=0;
-                
-                }     
+                },calcul:function(seat){
+					console.log(seat);
+					return 1;
+				}
         }
     }
 </script>
@@ -106,9 +127,10 @@ table {
 	font-size: 12px;
 	text-shadow: 1px 1px 0px #fff;
 	background: #eaebec;
-	margin: 20px;
+	
+	margin: auto;
 	border: #ccc 1px solid;
-
+	
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
 

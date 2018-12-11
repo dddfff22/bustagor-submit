@@ -1,89 +1,9 @@
 <template>
   <div id="home">
-  <v-app id="inspire">
-      <v-layout row wrap>
- <v-flex xs12 sm6 md4>
-        <v-subheader>Prepended icon</v-subheader>
-      </v-flex>
-  <v-flex xs12 sm6 md4>
-        <v-select
-          :items="states"
-          v-model="e1"
-          menu-props="auto"
-          label="Select"
-          hide-details
-          prepend-icon="map"
-          single-line
-        ></v-select>
-      </v-flex>
-   <v-flex xs12 sm6 md4>
-        <v-subheader>Prepended icon</v-subheader>
-      </v-flex>
- <v-flex xs12 sm6 md4>
-        <v-select
-          :items="states"
-          v-model="e2"
-          menu-props="auto"
-          label="Select"
-          hide-details
-          prepend-icon="map"
-          single-line
-        ></v-select>
-      </v-flex>
-    <v-flex xs12 sm6 md4>
-      <v-menu
-        :close-on-content-click="false"
-        v-model="menu2"
-        :nudge-right="40"
-        lazy
-        transition="scale-transition"
-        offset-y
-        full-width
-        min-width="290px"
-      >
-        <v-text-field
-          slot="activator"
-          v-model="date"
-          label="Picker without buttons"
-          prepend-icon="event"
-          readonly
-        ></v-text-field>
-        <v-date-picker v-model="date" @input="menu2 = false"></v-date-picker>
-      </v-menu>
-    </v-flex>
-   <v-flex xs11 sm5>
-      <v-menu
-        ref="menu"
-        :close-on-content-click="false"
-        v-model="menu3"
-        :nudge-right="40"
-        :return-value.sync="time"
-        lazy
-        transition="scale-transition"
-        offset-y
-        full-width
-        max-width="290px"
-        min-width="290px"
-      >
-        <v-text-field
-          slot="activator"
-          v-model="time"
-          label="Picker in menu"
-          prepend-icon="access_time"
-          readonly
-        ></v-text-field>
-        <v-time-picker
-          v-if="menu3"
-          v-model="time"
-          full-width
-          @change="$refs.menu.save(time)"
-        ></v-time-picker>
-      </v-menu>
-    </v-flex>
-    <v-spacer></v-spacer>
-  </v-layout>
-  <router-link :to="{name:'about',query: {origin:e1, destination:e2,date:date,time:time}}"><v-btn color="success">검색</v-btn></router-link>
-  </v-app>
+      <img src="../assets/com.png">
+      <router-link :to="{name:'reserve'}"><v-btn color="success">RESERVATION</v-btn></router-link>
+     <router-link :to="{name:'reserve'}"><v-btn color="success">RESERVATION</v-btn></router-link>
+       <router-link :to="{name:'reserve'}"><v-btn color="success">RESERVATION</v-btn></router-link>
   </div>
 </template>
 
